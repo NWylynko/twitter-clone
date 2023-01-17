@@ -7,6 +7,14 @@
     "build": "tsc --noEmit",
     "dev": "tsc --noEmit --watch"
   },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    },
+    "./dist": "./dist",
+    "./src": "./src"
+  },
   "dependencies": {
     "zod": "^3.20.2"
   },
