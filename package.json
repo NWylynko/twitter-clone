@@ -4,7 +4,8 @@
   "private": true,
   "workspaces": [
     "schemas",
-    "core"
+    "core",
+    "web"
   ],
   "scripts": {
     "build": "turbo run build",
