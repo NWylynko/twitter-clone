@@ -1,0 +1,15 @@
+{
+  "name": "core",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "dev": "tsc --noEmit --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.9.4",
+    "schemas": "*"
+  }
+}

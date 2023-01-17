@@ -8,6 +8,14 @@ importers:
     devDependencies:
       turbo: 1.7.0
 
+  core:
+    specifiers:
+      schemas: '*'
+      typescript: ^4.9.4
+    devDependencies:
+      schemas: link:../schemas
+      typescript: 4.9.4
+
   schemas:
     specifiers:
       typescript: ^4.9.4
