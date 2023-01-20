@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  accountId    String  @id @default(cuid()) @map("_id") @db.ObjectId
+  name         String
+  handle       String
+  bio          String?
+  location     String?
+  website      String?
+  profileImage String?
+  coverImage   String?
+
+  Tweets Tweet[] @relation("UserTweets")
+
+  followedBy    Account[] @relation("UserFollows", fields: [followedByIDs], references: [accountId])
+  followedByIDs String[]  @db.ObjectId
+  following     Account[] @relation("UserFollows", fields: [followingIDs], references: [accountId])
+  followingIDs  String[]  @db.ObjectId
+
+  blockedBy    Account[] @relation("UserBlocks", fields: [blockedByIDs], references: [accountId])
+  blockedByIDs String[]  @db.ObjectId
+  blocking     Account[] @relation("UserBlocks", fields: [blockingIDs], references: [accountId])
+  blockingIDs  String[]  @db.ObjectId
+
+  likes    Tweet[]  @relation("UserLikesTweet", fields: [likesIDs], references: [tweetId])
+  likesIDs String[] @db.ObjectId
+
+  retweets    Tweet[]  @relation("UserRetweetsTweet", fields: [retweetsIDs], references: [tweetId])
+  retweetsIDs String[] @db.ObjectId
+
+  directMessagesSent    DirectMessages[] @relation("UserDirectMessagesSend")
+  directMessagesSentIDs String[]         @db.ObjectId
+
+  directMessagesReceived    DirectMessages[] @relation("UserDirectMessagesReceived")
+  directMessagesReceivedIDs String[]         @db.ObjectId
+}
+
+model Tweet {
+  tweetId String @id @default(cuid()) @map("_id") @db.ObjectId
+  text    String
+
+  createdAt DateTime
+  updatedAt DateTime
+
+  author   Account @relation("UserTweets", fields: [authorId], references: [accountId])
+  authorId String  @db.ObjectId
+
+  likes      Int
+  likedBy    Account[] @relation("UserLikesTweet", fields: [likedByIDs], references: [accountId])
+  likedByIDs String[]  @db.ObjectId
+
+  replies   Tweet[] @relation("TweetReplies")
+  replyTo   Tweet?  @relation("TweetReplies", fields: [replyToId], references: [tweetId], onDelete: NoAction, onUpdate: NoAction)
+  replyToId String? @db.ObjectId
+
+  retweets       Int
+  retweetedBy    Account[] @relation("UserRetweetsTweet", fields: [retweetedByIDs], references: [accountId])
+  retweetedByIDs String[]  @db.ObjectId
+
+  quotes        Tweet[] @relation("TweetQuotes")
+  quoteTweet    Tweet?  @relation("TweetQuotes", fields: [quotedTweetId], references: [tweetId], onDelete: NoAction, onUpdate: NoAction)
+  quotedTweetId String? @db.ObjectId
+}
+
+model DirectMessages {
+  directMessageId String @id @default(cuid()) @map("_id")
+  text            String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sender   Account @relation("UserDirectMessagesSend", fields: [senderId], references: [accountId])
+  senderId String  @db.ObjectId
+
+  recipient   Account @relation("UserDirectMessagesReceived", fields: [recipientId], references: [accountId])
+  recipientId String  @db.ObjectId
+}

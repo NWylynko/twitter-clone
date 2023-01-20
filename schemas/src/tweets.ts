@@ -8,6 +8,7 @@ export const createTweet = defineEvent(
   { action: "create-tweet", version: 1 },
   {
     text: z.string().max(280, { message: "Tweet text must be less than 280 characters" }),
+    quotes: tweetId.optional(),
   },
   {
     tweetId

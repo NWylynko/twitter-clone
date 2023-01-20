@@ -27,14 +27,6 @@ export const updateAccount = defineEvent(
   {}
 )
 
-export const updateAccountPassword = defineEvent(
-  { action: "update-account-password", version: 1 },
-  {
-    password: z.string(),
-  },
-  {}
-)
-
 export const followAccount = defineEvent(
   { action: "follow-account", version: 1 },
   {

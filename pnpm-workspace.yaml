@@ -2,3 +2,4 @@ packages:
   - "schemas"
   - "core"
   - "web"
+  - "database"
