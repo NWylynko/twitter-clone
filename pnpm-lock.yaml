@@ -16,6 +16,12 @@ importers:
       schemas: link:../schemas
       typescript: 4.9.4
 
+  database:
+    specifiers:
+      typescript: ^4.9.4
+    devDependencies:
+      typescript: 4.9.4
+
   schemas:
     specifiers:
       typescript: ^4.9.4
