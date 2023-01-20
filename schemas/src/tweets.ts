@@ -15,15 +15,6 @@ export const createTweet = defineEvent(
   }
 )
 
-export const updateTweet = defineEvent(
-  { action: "update-tweet", version: 1 },
-  {
-    tweetId,
-    text: z.string().max(280, { message: "Tweet text must be less than 280 characters" }),
-  },
-  {}
-)
-
 export const deleteTweet = defineEvent(
   { action: "delete-tweet", version: 1 },
   {

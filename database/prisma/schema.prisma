@@ -11,14 +11,17 @@ datasource db {
 }
 
 model Account {
-  accountId    String  @id @default(cuid()) @map("_id") @db.ObjectId
+  accountId    String  @id @map("_id") @db.ObjectId
   name         String
-  handle       String
+  handle       String @unique
   bio          String?
   location     String?
   website      String?
   profileImage String?
   coverImage   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   Tweets Tweet[] @relation("UserTweets")
 
@@ -38,19 +41,21 @@ model Account {
   retweets    Tweet[]  @relation("UserRetweetsTweet", fields: [retweetsIDs], references: [tweetId])
   retweetsIDs String[] @db.ObjectId
 
-  directMessagesSent    DirectMessages[] @relation("UserDirectMessagesSend")
-  directMessagesSentIDs String[]         @db.ObjectId
+  chats   Chat[]   @relation("UserChats", fields: [chatIds], references: [chatId])
+  chatIds String[] @db.ObjectId
 
-  directMessagesReceived    DirectMessages[] @relation("UserDirectMessagesReceived")
-  directMessagesReceivedIDs String[]         @db.ObjectId
+  messages Message[]
 }
 
 model Tweet {
-  tweetId String @id @default(cuid()) @map("_id") @db.ObjectId
+  tweetId String @id @map("_id") @db.ObjectId
   text    String
 
-  createdAt DateTime
-  updatedAt DateTime
+  hashtags   Hashtag[] @relation("TweetHashtags", fields: [hashtagIds], references: [hashtagId])
+  hashtagIds String[]  @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   author   Account @relation("UserTweets", fields: [authorId], references: [accountId])
   authorId String  @db.ObjectId
@@ -72,16 +77,33 @@ model Tweet {
   quotedTweetId String? @db.ObjectId
 }
 
-model DirectMessages {
-  directMessageId String @id @default(cuid()) @map("_id")
-  text            String
+model Hashtag {
+  hashtagId String @id @map("_id") @db.ObjectId
+  name      String @unique
+
+  tweets   Tweet[]  @relation("TweetHashtags", fields: [tweetIds], references: [tweetId])
+  tweetIds String[] @db.ObjectId
+}
+
+model Chat {
+  chatId String @id @map("_id") @db.ObjectId
+
+  participants   Account[] @relation("UserChats", fields: [participantIDs], references: [accountId])
+  participantIDs String[]  @db.ObjectId
+
+  messages Message[]
+}
+
+model Message {
+  messageId String  @id @map("_id")
+  text      String
+  liked     Boolean
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
-  sender   Account @relation("UserDirectMessagesSend", fields: [senderId], references: [accountId])
+  chat   Chat   @relation(fields: [chatId], references: [chatId])
+  chatId String @db.ObjectId
+
+  sender   Account @relation(fields: [senderId], references: [accountId])
   senderId String  @db.ObjectId
-
-  recipient   Account @relation("UserDirectMessagesReceived", fields: [recipientId], references: [accountId])
-  recipientId String  @db.ObjectId
 }

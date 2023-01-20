@@ -1,12 +1,12 @@
 import { db } from "db"
 import type { AccountId } from "~/ids"
 
-export const blockAccount = async (blockedBy: AccountId, gettingBlocked: AccountId) => {
-  await db.account.update({
-    where: { accountId: blockedBy },
+export const blockAccount = (accountId: AccountId, accountIdToFollow: AccountId) => {
+  return db.account.update({
+    where: { accountId: accountId },
     data: {
       blocking: {
-        connect: { accountId: gettingBlocked },
+        connect: { accountId: accountIdToFollow },
       },
     },
   })
