@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/providers/AuthProvider'
 import { TRPCProvider } from '@/providers/TRPCProvider'
 import './globals.css'
 
@@ -8,10 +9,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <TRPCProvider>
-        <head />
-        <body>{children}</body>
-      </TRPCProvider>
+      <AuthProvider>
+        <TRPCProvider>
+          <head />
+          <body>{children}</body>
+        </TRPCProvider>
+      </AuthProvider>
     </html>
   )
 }

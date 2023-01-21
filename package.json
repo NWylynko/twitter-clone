@@ -6,7 +6,8 @@
     "schemas",
     "core",
     "web",
-    "database"
+    "database",
+    "auth"
   ],
   "scripts": {
     "build": "turbo run build",
