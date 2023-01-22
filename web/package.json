@@ -9,16 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v4.7.1/react-icons-all-files-4.7.1.tgz",
     "@tanstack/react-query": "^4.22.0",
     "@trpc/client": "^10.9.0",
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.9.0",
+    "auth": "*",
+    "client-only": "^0.0.1",
     "next": "13.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "^3.20.2",
-    "zustand": "^4.3.2",
-    "auth": "*"
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

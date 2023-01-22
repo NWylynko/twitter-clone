@@ -1,28 +1,70 @@
 "use client";
 
 import { create } from "zustand";
-import type { User } from "auth/src/web/types"
 import { shallow } from 'zustand/shallow'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
-type AuthStore = {
-  user: User | undefined;
+import type { User } from "auth/src/web/types"
+
+type Setters = {
   setUser: (user: User | undefined) => void;
-  loading: boolean;
   setLoading: (loading: boolean) => void;
-  error: Error | undefined;
   setError: (error: Error | undefined) => void;
 }
 
-const useAuthStore = create<AuthStore>()((set, get) => {
-  return {
-    user: undefined,
-    setUser: (user) => set({ user }),
-    loading: true,
-    setLoading: (loading) => set({ loading }),
-    error: undefined,
-    setError: (error) => set({ error }),
-  }
-})
+type LoggedIn = {
+  user: User;
+  loading: false,
+  error: undefined;
+  jwt: string;
+}
 
-export const useAuth = () => useAuthStore(({ user, loading, error }) => ({ user, loading, error }), shallow)
+type LoggedOut = {
+  user: undefined;
+  loading: false;
+  error: undefined;
+  jwt: undefined;
+}
+
+type LoadingState = {
+  user: undefined;
+  loading: true;
+  error: undefined;
+  jwt: undefined;
+}
+
+type ErrorState = {
+  user: undefined;
+  loading: false;
+  error: Error;
+  jwt: undefined;
+}
+
+type AuthState = LoggedIn | LoggedOut | LoadingState | ErrorState
+
+type AuthStore = Setters & AuthState
+
+const useAuthStore = create<AuthStore>()(persist((set, get) => ({
+  user: undefined,
+  setUser: async (user) => {
+    set({ user })
+
+    if (user) {
+      set({ jwt: await user.getIdToken() })
+    } else {
+      set({ jwt: undefined })
+    }
+  },
+  loading: true,
+  setLoading: (loading) => set({ loading: loading as true }),
+  error: undefined,
+  setError: (error) => set({ error }),
+  jwt: undefined
+}), {
+  name: 'user-auth',
+  storage: createJSONStorage<AuthStore>(() => localStorage)
+}))
+
+export const useAuth = () => useAuthStore(({ user, loading, error, jwt }) => ({ user, loading, error, jwt }), shallow)
 export const useSetAuth = () => useAuthStore(({ setUser, setLoading, setError }) => ({ setUser, setLoading, setError }), shallow)
+export const useAuthJWT = () => useAuthStore(({ jwt }) => jwt)

@@ -1,5 +1,6 @@
 import { TRPCError, initTRPC } from "@trpc/server";
 import { Context } from "./context";
+import type { User } from "auth/src/node/decodeJwt"
 
 // Avoid exporting the entire t-object
 // since it's not very descriptive.
@@ -7,14 +8,32 @@ import { Context } from "./context";
 // is common in i18n libraries.
 const t = initTRPC.context<Context>().create();
 
-const isAuthed = t.middleware(({ next, ctx }) => {
-  if (false) {
+const isAuthed = t.middleware(async ({ next, ctx }) => {
+
+  let user: User;
+
+  try {
+
+    user = await ctx.getUser();
+
+  } catch (error: any) {
+
+    console.error(error);
+
     throw new TRPCError({
       code: "UNAUTHORIZED",
+      message: error.message,
     });
+
   }
+
   return next({
-    ctx: {},
+    ctx: {
+      ...ctx,
+      // Override the getUser function
+      // because we already have the user.
+      getUser: async () => user,
+    },
   });
 });
 

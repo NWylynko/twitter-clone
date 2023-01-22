@@ -31,3 +31,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# Firebase Admin
+firebase-service-account.json

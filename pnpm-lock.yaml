@@ -55,6 +55,7 @@ importers:
 
   web:
     specifiers:
+      '@react-icons/all-files': https://github.com/react-icons/react-icons/releases/download/v4.7.1/react-icons-all-files-4.7.1.tgz
       '@tanstack/react-query': ^4.22.0
       '@trpc/client': ^10.9.0
       '@trpc/react-query': ^10.9.0
@@ -64,6 +65,7 @@ importers:
       '@types/react-dom': ^18.0.10
       auth: '*'
       autoprefixer: ^10.4.13
+      client-only: ^0.0.1
       next: 13.1.2
       postcss: ^8.4.21
       react: 18.2.0
@@ -73,11 +75,13 @@ importers:
       zod: ^3.20.2
       zustand: ^4.3.2
     dependencies:
+      '@react-icons/all-files': '@github.com/react-icons/react-icons/releases/download/v4.7.1/react-icons-all-files-4.7.1.tgz_react@18.2.0'
       '@tanstack/react-query': 4.22.0_biqbaboplfbrettd7655fr4n2y
       '@trpc/client': 10.9.0_@trpc+server@10.9.0
       '@trpc/react-query': 10.9.0_qw4miir7nnxijwjta54q3esyeq
       '@trpc/server': 10.9.0
       auth: link:../auth
+      client-only: 0.0.1
       next: 13.1.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2964,4 +2968,15 @@ packages:
     dependencies:
       react: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
+  '@github.com/react-icons/react-icons/releases/download/v4.7.1/react-icons-all-files-4.7.1.tgz_react@18.2.0':
+    resolution: {tarball: https://github.com/react-icons/react-icons/releases/download/v4.7.1/react-icons-all-files-4.7.1.tgz}
+    id: '@github.com/react-icons/react-icons/releases/download/v4.7.1/react-icons-all-files-4.7.1.tgz'
+    name: '@react-icons/all-files'
+    version: 4.7.1
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
