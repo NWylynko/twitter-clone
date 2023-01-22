@@ -1,0 +1,19 @@
+{
+  "name": "consumer",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "database": "workspace:*",
+    "schemas": "workspace:*",
+    "core": "workspace:*",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}

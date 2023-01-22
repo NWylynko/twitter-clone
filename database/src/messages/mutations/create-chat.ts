@@ -1,5 +1,5 @@
-import { db } from "db"
-import type { AccountId, ChatId, MessageId } from "@/ids"
+import { db } from "../../client"
+import type { AccountId, ChatId } from "../../ids"
 
 type NewChat = {
   chatId: ChatId
@@ -8,7 +8,7 @@ type NewChat = {
 
 export const createChat = (newChat: NewChat) => {
   return db.chat.create({
-    data: { 
+    data: {
       chatId: newChat.chatId,
       participantIDs: newChat.participants
     },

@@ -1,5 +1,5 @@
-import { db } from "db"
-import type { AccountId, ChatId, MessageId } from "@/ids"
+import { db } from "../../client"
+import type { AccountId, ChatId, MessageId } from "../../ids"
 
 type NewMessage = {
   messageId: MessageId

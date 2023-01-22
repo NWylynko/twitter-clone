@@ -15,8 +15,8 @@ export const createTweet = defineEvent(
   }
 )
 
-export const deleteTweet = defineEvent(
-  { action: "delete-tweet", version: 1 },
+export const removeTweet = defineEvent(
+  { action: "remove-tweet", version: 1 },
   {
     tweetId,
   },

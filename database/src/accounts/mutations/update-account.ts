@@ -1,5 +1,5 @@
-import { db } from "db"
-import type { AccountId } from "~/ids"
+import { db } from "../../client"
+import type { AccountId } from "../../ids"
 
 type UpdateAccount = {
   name?: string

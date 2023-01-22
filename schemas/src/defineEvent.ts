@@ -25,5 +25,5 @@ export const defineEvent = <EventAction extends string, EventVersion extends num
     payload
   })
 
-  return { client, server, payload } as const
+  return { event, client, server, payload } as const
 }

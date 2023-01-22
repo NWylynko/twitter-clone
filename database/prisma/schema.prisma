@@ -13,7 +13,7 @@ datasource db {
 model Account {
   accountId    String  @id @map("_id") @db.ObjectId
   name         String
-  handle       String @unique
+  handle       String  @unique
   bio          String?
   location     String?
   website      String?
@@ -51,7 +51,7 @@ model Tweet {
   tweetId String @id @map("_id") @db.ObjectId
   text    String
 
-  hashtags   Hashtag[] @relation("TweetHashtags", fields: [hashtagIds], references: [hashtagId])
+  hashtags   Hashtag[] @relation("TweetHashtags", fields: [hashtagIds], references: [name])
   hashtagIds String[]  @db.ObjectId
 
   createdAt DateTime @default(now())
@@ -78,8 +78,7 @@ model Tweet {
 }
 
 model Hashtag {
-  hashtagId String @id @map("_id") @db.ObjectId
-  name      String @unique
+  name String @id @map("_id") @db.ObjectId
 
   tweets   Tweet[]  @relation("TweetHashtags", fields: [tweetIds], references: [tweetId])
   tweetIds String[] @db.ObjectId

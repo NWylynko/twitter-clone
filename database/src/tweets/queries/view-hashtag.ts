@@ -1,12 +1,12 @@
-import { db } from "db"
+import { db } from "../../client"
 import type { Pagination } from "@/types"
 import type { Prisma } from "@prisma/client"
-import { HashtagId } from "@/ids"
+import { Hashtag } from "../../ids"
 
-export const viewHashtag = (hashtagId: HashtagId, pagination: Pagination<Required<Prisma.HashtagWhereUniqueInput>>) => {
+export const viewHashtag = (hashtag: Hashtag, pagination: Pagination<Required<Prisma.HashtagWhereUniqueInput>>) => {
   return db.hashtag.findMany({
     where: {
-      hashtagId,
+      name: hashtag,
     },
     cursor: pagination.cursor,
     take: pagination.numItems,

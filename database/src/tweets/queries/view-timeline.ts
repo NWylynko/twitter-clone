@@ -1,7 +1,7 @@
-import { db } from "db"
+import { db } from "../../client"
 import type { Pagination } from "@/types"
 import type { Prisma } from "@prisma/client"
-import type { AccountId } from "@/ids"
+import type { AccountId } from "../../ids"
 
 export const viewTimeline = (accountId: AccountId, pagination: Pagination<Required<Prisma.TweetWhereUniqueInput>>) => {
   return db.tweet.findMany({

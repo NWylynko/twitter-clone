@@ -1,5 +1,5 @@
-import { db } from "db"
-import type { AccountId, ChatId } from "@/ids"
+import { db } from "../../client"
+import type { AccountId, ChatId } from "../../ids"
 import type { Pagination } from "@/types"
 import type { Prisma } from "@prisma/client"
 

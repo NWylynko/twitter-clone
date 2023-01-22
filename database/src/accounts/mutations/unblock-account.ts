@@ -1,12 +1,12 @@
 import { db } from "../../client"
 import type { AccountId } from "../../ids"
 
-export const blockAccount = (accountId: AccountId, accountIdToBlock: AccountId) => {
+export const unblockAccount = (accountId: AccountId, accountIdToBlock: AccountId) => {
   return db.account.update({
     where: { accountId: accountId },
     data: {
       blocking: {
-        connect: { accountId: accountIdToBlock },
+        disconnect: { accountId: accountIdToBlock },
       },
     },
   })

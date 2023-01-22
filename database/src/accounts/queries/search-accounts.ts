@@ -1,4 +1,4 @@
-import { db } from "db"
+import { db } from "../../client"
 import type { Pagination } from "@/types"
 import type { Prisma } from "@prisma/client"
 

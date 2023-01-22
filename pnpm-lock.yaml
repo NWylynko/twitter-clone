@@ -23,9 +23,24 @@ importers:
       '@types/node': 18.11.18
       typescript: 4.9.4
 
+  consumer:
+    specifiers:
+      core: workspace:*
+      database: workspace:*
+      schemas: workspace:*
+      typescript: ^4.9.4
+      zod: ^3.20.2
+    dependencies:
+      core: link:../core
+      database: link:../database
+      schemas: link:../schemas
+      zod: 3.20.2
+    devDependencies:
+      typescript: 4.9.4
+
   core:
     specifiers:
-      schemas: '*'
+      schemas: workspace:*
       typescript: ^4.9.4
     devDependencies:
       schemas: link:../schemas
@@ -63,7 +78,7 @@ importers:
       '@types/node': ^18.11.18
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.10
-      auth: '*'
+      auth: workspace:*
       autoprefixer: ^10.4.13
       client-only: ^0.0.1
       next: 13.1.2

@@ -17,12 +17,12 @@ export const createAccount = defineEvent(
 export const updateAccount = defineEvent(
   { action: "update-account", version: 1 },
   {
-    name: z.string(),
-    bio: z.string(),
-    location: z.string(),
-    website: z.string().url(),
-    profileImage: z.string().url(),
-    coverImage: z.string().url(),
+    name: z.string().optional(),
+    bio: z.string().optional(),
+    location: z.string().optional(),
+    website: z.string().url().optional(),
+    profileImage: z.string().url().optional(),
+    coverImage: z.string().url().optional(),
   },
   {}
 )
@@ -45,6 +45,14 @@ export const unfollowAccount = defineEvent(
 
 export const blockAccount = defineEvent(
   { action: "block-account", version: 1 },
+  {
+    accountId,
+  },
+  {}
+)
+
+export const unblockAccount = defineEvent(
+  { action: "unblock-account", version: 1 },
   {
     accountId,
   },
