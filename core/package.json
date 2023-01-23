@@ -1,15 +1,29 @@
 {
   "name": "core",
-  "type": "module",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --noEmit",
-    "dev": "tsc --noEmit --watch"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./dist": "./dist/index.js",
+    "./dist/*": "./dist/*.js",
+    "./src": "./src/index.js",
+    "./src/*": "./src/*.js"
+  },
+  "types": "./dist/index.d.ts",
   "dependencies": {},
   "devDependencies": {
-    "typescript": "^4.9.4",
-    "schemas": "workspace:*"
+    "@tsconfig/node18": "^1.0.1",
+    "@types/node": "^18.11.18",
+    "schemas": "workspace:*",
+    "source-map-support": "^0.5.21",
+    "typescript": "^4.9.4"
   }
 }

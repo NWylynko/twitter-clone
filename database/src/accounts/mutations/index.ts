@@ -1,3 +1,5 @@
+import "source-map-support/register"
+
 export * from "./block-account"
 export * from "./create-account"
 export * from "./follow-account"

@@ -1,6 +1,5 @@
 {
   "name": "consumer",
-  "type": "module",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,12 +7,15 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
+    "core": "workspace:*",
     "database": "workspace:*",
     "schemas": "workspace:*",
-    "core": "workspace:*",
     "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@tsconfig/node18": "^1.0.1",
+    "@types/node": "^18.11.18",
+    "source-map-support": "^0.5.21",
     "typescript": "^4.9.4"
   }
 }

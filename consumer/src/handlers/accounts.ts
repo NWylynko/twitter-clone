@@ -1,46 +1,46 @@
 import { z } from "zod"
-import type { Accounts } from "schemas/src"
-import * as accounts from "schemas/src/accounts"
-import * as db from "database/src/accounts/mutations"
+import type { Accounts } from "schemas"
+import * as accounts from "schemas/dist/accounts"
+import * as db from "database/dist/accounts/mutations"
 
-const createAccount = (event: z.infer<Accounts["createAccount"]["server"]>) => {
-  return db.createAccount({
+const createAccount = async (event: z.infer<Accounts["createAccount"]["server"]>) => {
+  await  db.createAccount({
     accountId: event.accountId,
     name: event.payload.name,
     handle: event.payload.handle
   })
 }
 
-const updateAccount = (event: z.infer<Accounts["updateAccount"]["server"]>) => {
-  return db.updateAccount(
+const updateAccount = async (event: z.infer<Accounts["updateAccount"]["server"]>) => {
+  await db.updateAccount(
     event.accountId,
     event.payload
   )
 }
 
-const followAccount = (event: z.infer<Accounts["followAccount"]["server"]>) => {
-  return db.followAccount(
+const followAccount = async (event: z.infer<Accounts["followAccount"]["server"]>) => {
+  await db.followAccount(
     event.accountId,
     event.payload.accountId
   )
 }
 
-const unfollowAccount = (event: z.infer<Accounts["unfollowAccount"]["server"]>) => {
-  return db.unfollowAccount(
+const unfollowAccount = async (event: z.infer<Accounts["unfollowAccount"]["server"]>) => {
+  await db.unfollowAccount(
     event.accountId,
     event.payload.accountId
   )
 }
 
-const blockAccount = (event: z.infer<Accounts["blockAccount"]["server"]>) => {
-  return db.blockAccount(
+const blockAccount = async (event: z.infer<Accounts["blockAccount"]["server"]>) => {
+  await db.blockAccount(
     event.accountId,
     event.payload.accountId
   )
 }
 
-const unblockAccount = (event: z.infer<Accounts["unblockAccount"]["server"]>) => {
-  return db.unblockAccount(
+const unblockAccount = async (event: z.infer<Accounts["unblockAccount"]["server"]>) => {
+  await db.unblockAccount(
     event.accountId,
     event.payload.accountId
   )

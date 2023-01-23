@@ -6,8 +6,8 @@ type NewMessage = {
   text: string
 }
 
-export const sendMessage = (senderId: AccountId, chatId: ChatId, newMessage: NewMessage) => {
-  return db.message.create({
+export const sendMessage = async (senderId: AccountId, chatId: ChatId, newMessage: NewMessage) => {
+  return await db.message.create({
     data: {
       ...newMessage,
       senderId,

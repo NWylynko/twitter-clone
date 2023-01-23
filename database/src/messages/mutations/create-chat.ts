@@ -6,8 +6,8 @@ type NewChat = {
   participants: AccountId[]
 }
 
-export const createChat = (newChat: NewChat) => {
-  return db.chat.create({
+export const createChat = async (newChat: NewChat) => {
+  return await db.chat.create({
     data: {
       chatId: newChat.chatId,
       participantIDs: newChat.participants

@@ -8,8 +8,8 @@ type NewTweet = {
   quotes?: TweetId
 }
 
-export const createTweet = (accountId: AccountId, newTweet: NewTweet) => {
-  return db.tweet.create({
+export const createTweet = async (accountId: AccountId, newTweet: NewTweet) => {
+  return await db.tweet.create({
     data: {
       tweetId: newTweet.tweetId,
       text: newTweet.text,

@@ -1,3 +1,5 @@
+import "source-map-support/register"
+
 export * as primatives from "./primatives"
 
 import * as accounts from "./accounts"

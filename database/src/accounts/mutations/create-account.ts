@@ -6,8 +6,8 @@ type NewAccount = {
   handle: string
 }
 
-export const createAccount = (newAccount: NewAccount) => {
-  return db.account.create({
+export const createAccount = async (newAccount: NewAccount) => {
+  return await db.account.create({
     data: newAccount,
   })
 }

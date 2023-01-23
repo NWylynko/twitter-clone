@@ -25,9 +25,12 @@ importers:
 
   consumer:
     specifiers:
+      '@tsconfig/node18': ^1.0.1
+      '@types/node': ^18.11.18
       core: workspace:*
       database: workspace:*
       schemas: workspace:*
+      source-map-support: ^0.5.21
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
@@ -36,36 +39,55 @@ importers:
       schemas: link:../schemas
       zod: 3.20.2
     devDependencies:
+      '@tsconfig/node18': 1.0.1
+      '@types/node': 18.11.18
+      source-map-support: 0.5.21
       typescript: 4.9.4
 
   core:
     specifiers:
+      '@tsconfig/node18': ^1.0.1
+      '@types/node': ^18.11.18
       schemas: workspace:*
+      source-map-support: ^0.5.21
       typescript: ^4.9.4
     devDependencies:
+      '@tsconfig/node18': 1.0.1
+      '@types/node': 18.11.18
       schemas: link:../schemas
+      source-map-support: 0.5.21
       typescript: 4.9.4
 
   database:
     specifiers:
       '@prisma/client': ^4.9.0
+      '@tsconfig/node18': ^1.0.1
       '@types/node': ^18.11.18
       prisma: ^4.9.0
+      source-map-support: ^0.5.21
       typescript: ^4.9.4
     dependencies:
       '@prisma/client': 4.9.0_prisma@4.9.0
     devDependencies:
+      '@tsconfig/node18': 1.0.1
       '@types/node': 18.11.18
       prisma: 4.9.0
+      source-map-support: 0.5.21
       typescript: 4.9.4
 
   schemas:
     specifiers:
+      '@tsconfig/node18': ^1.0.1
+      '@types/node': ^18.11.18
+      source-map-support: ^0.5.21
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
       zod: 3.20.2
     devDependencies:
+      '@tsconfig/node18': 1.0.1
+      '@types/node': 18.11.18
+      source-map-support: 0.5.21
       typescript: 4.9.4
 
   web:
@@ -965,6 +987,10 @@ packages:
     resolution: {integrity: sha512-5psyZgbvy29pJND32hwkWTMbv6s86IbsPOeDopsgNF0VegZT6Dsijmb7Ub/TDhuJVQVq5u4u5briMXi3SxmBkw==}
     dev: false
 
+  /@tsconfig/node18/1.0.1:
+    resolution: {integrity: sha512-sNFeK6X2ATlhlvzyH4kKYQlfHXE2f2/wxtB9ClvYXevWpmwkUT7VaSrjIN9E76Qebz8qP5JOJJ9jD3QoD/Z9TA==}
+    dev: true
+
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
@@ -1239,6 +1265,10 @@ packages:
   /buffer-equal-constant-time/1.0.1:
     resolution: {integrity: sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==}
     dev: false
+
+  /buffer-from/1.1.2:
+    resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+    dev: true
 
   /camelcase-css/2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
@@ -2573,12 +2603,17 @@ packages:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
 
+  /source-map-support/0.5.21:
+    resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
+    dependencies:
+      buffer-from: 1.1.2
+      source-map: 0.6.1
+    dev: true
+
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
     requiresBuild: true
-    dev: false
-    optional: true
 
   /stream-events/1.0.5:
     resolution: {integrity: sha512-E1GUzBSgvct8Jsb3v2X15pjzN1tYebtbLaMg+eBOUOAxgbLoSbT2NS91ckc5lJD1KfLjId+jXJRgo0qnV5Nerg==}

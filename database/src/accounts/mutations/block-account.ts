@@ -1,8 +1,8 @@
 import { db } from "../../client"
 import type { AccountId } from "../../ids"
 
-export const blockAccount = (accountId: AccountId, accountIdToBlock: AccountId) => {
-  return db.account.update({
+export const blockAccount = async (accountId: AccountId, accountIdToBlock: AccountId) => {
+  return await db.account.update({
     where: { accountId: accountId },
     data: {
       blocking: {

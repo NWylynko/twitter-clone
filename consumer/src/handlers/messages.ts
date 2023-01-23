@@ -1,14 +1,14 @@
 import { z } from "zod"
-import type { Messages } from "schemas/src"
-import * as messages from "schemas/src/messages"
-import * as db from "database/src/messages/mutations"
+import type { Messages } from "schemas"
+import * as messages from "schemas/dist/messages"
+import * as db from "database/dist/messages/mutations"
 
-const createChat = (event: z.infer<Messages["createChat"]["server"]>) => {
-  return db.createChat(event.payload)
+const createChat = async (event: z.infer<Messages["createChat"]["server"]>) => {
+  await db.createChat(event.payload)
 }
 
-const sendMessage = (event: z.infer<Messages["sendMessage"]["server"]>) => {
-  return db.sendMessage(
+const sendMessage = async (event: z.infer<Messages["sendMessage"]["server"]>) => {
+  await db.sendMessage(
     event.accountId,
     event.payload.chatId,
     {
@@ -18,14 +18,14 @@ const sendMessage = (event: z.infer<Messages["sendMessage"]["server"]>) => {
   )
 }
 
-const likeMessage = (event: z.infer<Messages["likeMessage"]["server"]>) => {
-  return db.likeMessage(
+const likeMessage = async (event: z.infer<Messages["likeMessage"]["server"]>) => {
+  await db.likeMessage(
     event.payload.messageId
   )
 }
 
-const deleteMessage = (event: z.infer<Messages["deleteMessage"]["server"]>) => {
-  return db.deleteMessage(
+const deleteMessage = async (event: z.infer<Messages["deleteMessage"]["server"]>) => {
+  await db.deleteMessage(
     event.payload.messageId
   )
 }

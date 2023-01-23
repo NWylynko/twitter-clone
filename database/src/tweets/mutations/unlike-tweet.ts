@@ -1,8 +1,8 @@
 import { db } from "../../client"
 import type { AccountId, TweetId } from "../../ids"
 
-export const unlikeTweet = (accountId: AccountId, tweetId: TweetId) => {
-  return db.account.update({
+export const unlikeTweet = async (accountId: AccountId, tweetId: TweetId) => {
+  return await db.account.update({
     where: { accountId },
     data: {
       likes: {

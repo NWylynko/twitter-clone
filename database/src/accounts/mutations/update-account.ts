@@ -10,8 +10,8 @@ type UpdateAccount = {
   coverImage?: string
 }
 
-export const updateAccount = (accountId: AccountId, update: UpdateAccount) => {
-  return db.account.update({
+export const updateAccount = async (accountId: AccountId, update: UpdateAccount) => {
+  return await db.account.update({
     where: { accountId },
     data: update,
   })

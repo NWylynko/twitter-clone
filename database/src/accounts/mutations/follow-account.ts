@@ -1,8 +1,8 @@
 import { db } from "../../client"
 import type { AccountId } from "../../ids"
 
-export const followAccount = (accountId: AccountId, accountIdToFollow: AccountId) => {
-  return db.account.update({
+export const followAccount = async (accountId: AccountId, accountIdToFollow: AccountId) => {
+  return await db.account.update({
     where: { accountId },
     data: {
       following: {

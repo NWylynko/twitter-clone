@@ -1,13 +1,13 @@
 import { z } from "zod"
-import type { Tweets } from "schemas/src"
-import * as tweets from "schemas/src/tweets"
-import * as db from "database/src/tweets/mutations"
+import type { Tweets } from "schemas"
+import * as tweets from "schemas/dist/tweets"
+import * as db from "database/dist/tweets/mutations"
 
-import { extractHashtags } from "core/src/extractHashtags"
+import { extractHashtags } from "core/dist/extractHashtags"
 
-const createTweet = (event: z.infer<Tweets["createTweet"]["server"]>) => {
+const createTweet = async (event: z.infer<Tweets["createTweet"]["server"]>) => {
   const hashtags = extractHashtags(event.payload.text)
-  return db.createTweet(
+  await db.createTweet(
     event.accountId,
     {
       tweetId: event.payload.tweetId,
@@ -18,28 +18,28 @@ const createTweet = (event: z.infer<Tweets["createTweet"]["server"]>) => {
   )
 }
 
-const likeTweet = (event: z.infer<Tweets["likeTweet"]["server"]>) => {
-  return db.likeTweet(
+const likeTweet = async (event: z.infer<Tweets["likeTweet"]["server"]>) => {
+  await db.likeTweet(
     event.accountId,
     event.payload.tweetId
   )
 }
 
-const removeTweet = (event: z.infer<Tweets["removeTweet"]["server"]>) => {
-  return db.removeTweet(
+const removeTweet = async (event: z.infer<Tweets["removeTweet"]["server"]>) => {
+  await db.removeTweet(
     event.payload.tweetId
   )
 }
 
-const retweetTweet = (event: z.infer<Tweets["retweetTweet"]["server"]>) => {
-  return db.retweetTweet(
+const retweetTweet = async (event: z.infer<Tweets["retweetTweet"]["server"]>) => {
+  await db.retweetTweet(
     event.accountId,
     event.payload.tweetId
   )
 }
 
-const unlikeTweet = (event: z.infer<Tweets["unlikeTweet"]["server"]>) => {
-  return db.unlikeTweet(
+const unlikeTweet = async (event: z.infer<Tweets["unlikeTweet"]["server"]>) => {
+  await db.unlikeTweet(
     event.accountId,
     event.payload.tweetId
   )
