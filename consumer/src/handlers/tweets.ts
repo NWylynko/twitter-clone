@@ -1,7 +1,9 @@
 import { z } from "zod"
 import type { Tweets } from "schemas"
-import * as tweets from "schemas/dist/tweets"
-import * as db from "database/dist/tweets/mutations"
+import { tweets } from "schemas"
+import { mutations } from "database"
+
+const db = mutations.tweets
 
 import { extractHashtags } from "core/dist/extractHashtags"
 

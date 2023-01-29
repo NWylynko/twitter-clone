@@ -18,7 +18,9 @@
     "./src/*": "./src/*.js"
   },
   "types": "./dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "bson": "^4.7.2"
+  },
   "devDependencies": {
     "@tsconfig/node18": "^1.0.1",
     "@types/node": "^18.11.18",

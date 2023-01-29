@@ -1,10 +1,12 @@
 import { z } from "zod"
 import type { Accounts } from "schemas"
-import * as accounts from "schemas/dist/accounts"
-import * as db from "database/dist/accounts/mutations"
+import { accounts } from "schemas"
+import { mutations } from "database"
+
+const db = mutations.accounts
 
 const createAccount = async (event: z.infer<Accounts["createAccount"]["server"]>) => {
-  await  db.createAccount({
+  await db.createAccount({
     accountId: event.accountId,
     name: event.payload.name,
     handle: event.payload.handle

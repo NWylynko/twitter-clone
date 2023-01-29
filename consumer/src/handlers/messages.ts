@@ -1,7 +1,9 @@
 import { z } from "zod"
 import type { Messages } from "schemas"
-import * as messages from "schemas/dist/messages"
-import * as db from "database/dist/messages/mutations"
+import { messages } from "schemas"
+import { mutations } from "database"
+
+const db = mutations.messages
 
 const createChat = async (event: z.infer<Messages["createChat"]["server"]>) => {
   await db.createChat(event.payload)
