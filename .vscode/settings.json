@@ -1,4 +1,21 @@
 {
   "typescript.tsdk": "./node_modules/.pnpm/typescript@4.9.4/node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "files.exclude": {
+    ".nvmrc": true,
+    "**/.env": true,
+    "**/.gitignore": true,
+    "**/.next": true,
+    "**/.turbo": true,
+    "**/.vscode": true,
+    "**/dist": true,
+    "**/next-env.d.ts": true,
+    "**/next.config.js": true,
+    "**/node_modules": true,
+    "**/postcss.config.js": true,
+    "**/tailwind.config.js": true,
+    "**/tsconfig.json": true,
+    "pnpm-*.yaml": true,
+    "turbo.json": true
+  }
 }
