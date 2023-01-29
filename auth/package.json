@@ -8,6 +8,7 @@
     "dev": "tsc --noEmit --watch"
   },
   "dependencies": {
+    "encoding": "^0.1.13",
     "firebase": "^9.16.0",
     "firebase-admin": "^11.5.0",
     "zod": "^3.20.2"

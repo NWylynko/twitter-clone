@@ -1,3 +1,5 @@
+import { tw } from 'typewind';
+
 import { AuthProvider } from '@/providers/AuthProvider'
 import { TRPCProvider } from '@/providers/TRPCProvider'
 import './globals.css'
@@ -13,8 +15,8 @@ export default function RootLayout({
       <AuthProvider>
         <TRPCProvider>
           <head />
-          <body className="max-w-7xl mx-auto">
-            <div  className="grid grid-cols-2 m-2 gap-2">
+          <body className={tw.max_w_7xl.mx_auto.h_screen}>
+            <div className={tw.flex.flex_row.h_screen.gap_6}>
               <Navigation />
               {children}
             </div>
@@ -23,4 +25,4 @@ export default function RootLayout({
       </AuthProvider>
     </html>
   )
-} 
+}

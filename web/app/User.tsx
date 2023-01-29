@@ -1,5 +1,6 @@
 "use client";
 
+import { tw } from "typewind";
 import { useAuth } from "@/hooks/useAuth";
 
 const User = () => {
@@ -7,13 +8,16 @@ const User = () => {
   const { user } = useAuth();
 
   if (!user) {
-    throw new Error("Not logged in")
+    return <></>
   }
 
   return (
-    <div className="grid grid-rows-3">
-      <div className="w-10 h-10 rounded-full bg-zinc-400">
-        {user.photoURL && <img className="rounded-full" src={user.photoURL} />}
+    <div className={tw.grid.grid_cols_3}>
+      <div className={tw.w_10.h_10.rounded_full.bg_zinc_400}>
+        {user.photoURL && <img className={tw.rounded_full} src={user.photoURL} />}
+      </div>
+      <div>
+        <span>{user.displayName}</span>
       </div>
     </div>
   )
